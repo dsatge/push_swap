@@ -9,8 +9,8 @@ Un projet d'algorithmique consistant à trier des données sur une pile, avec un
 ## Sommaire
 
 ### [1/ Le projet](#Le-projet) 
-#### [a/ Les instructions](#Les-instructions)
-#### [b/ Algorithme implenté](#Algorithme_implenté)
+#### [a/ Les Instructions Disponibles](#Les_Instructions_Disponibles)
+#### [b/ Algorithme implémenté](#Algorithme_implémenté)
 ### [2/ Compilation](#Compilation) 
 ### [3/ Utilisation](#Utilisation)
 #### [a/ MacOS](#macOS)
@@ -34,7 +34,7 @@ Vous disposez de deux piles, **A** et **B** :
 
 ---
 
-## 🛠️ Les Instructions Disponibles
+## Les Instructions Disponibles
 
 | Commande | Action |
 | :--- | :--- |
@@ -109,7 +109,7 @@ Le programme prend en argument une liste d'entiers non triés (passés en param�
 
 Les exécutables de vérification officiels pour macOS (checker_Mac) et Linux (checker_linux) sont inclus à la racine du projet et disposent déjà des droits d'exécution requis (chmod +x).
 
-1. macOS
+### macOS
 
 Sous macOS, la génération des nombres sans doublon s'effectue avec ruby (préinstallé nativement). \
 
@@ -141,7 +141,7 @@ Tester 500 nombres : \
 > xattr -d com.apple.quarantine ./checker_Mac
 
 
-2. Linux
+### Linux
 
 Sous Linux, la génération aléatoire se fait via l'utilitaire shuf. \
 
@@ -169,7 +169,7 @@ Tester 500 nombres : \
 `./push_swap $ARG | ./checker_linux $ARG`
 
 
-3. Windows (WSL)
+### Windows (WSL)
 
 Le projet repose sur les standards POSIX et les binaires ELF / Mach-O. Il n'est donc pas exécutable nativement sous Windows (PowerShell / CMD). \
 
@@ -186,7 +186,7 @@ Ouvrez le terminal WSL et installez les outils de compilation essentiels : \
 Suivez ensuite exactement la procédure décrite pour Linux (utilisation de shuf et de ./checker_linux). \
 
 
-### Gestion des Erreurs
+## Gestion des Erreurs
 
 Le programme intercepte les entrées invalides, affiche Error\n sur la sortie d'erreur standard (stderr / fd 2) et quitte immédiatement sans fuite mémoire : \
 
