@@ -6,6 +6,20 @@ Un projet d'algorithmique consistant à trier des données sur une pile, avec un
 
 ---
 
+## Sommaire
+
+### [1/ Le projet](#Le-projet) 
+#### [a/ Les instructions](#Les-instructions)
+#### [b/ Algorithme implenté](#Algorithme_implenté)
+### [2/ Compilation](#Compilation) 
+### [3/ Utilisation](#Utilisation)
+#### [a/ MacOS](#macOS)
+#### [b/ Linux](#Linux)
+#### [c/ Windows (WSL)](#Windows_(WSL))
+### [4/ Gestion des erreurs](#Gestion-des-erreurs) 
+
+<br>
+
 ## Le Projet
 
 Le but est d'écrire un programme en C nommé `push_swap` qui calcule et affiche sur la sortie standard les instructions (dans le langage d'assemblage de l'exercice) 
@@ -171,9 +185,6 @@ Ouvrez le terminal WSL et installez les outils de compilation essentiels : \
 
 Suivez ensuite exactement la procédure décrite pour Linux (utilisation de shuf et de ./checker_linux). \
 
-### Barème de Performance
-
-Le vérificateur doit afficher OK et le nombre d'instructions doit respecter un seuil bas.
 
 ### Gestion des Erreurs
 
