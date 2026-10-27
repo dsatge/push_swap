@@ -49,6 +49,8 @@ clean:
 	make -C lib/printf clean
 
 fclean:	clean
+	make -C lib/libft fclean
+	make -C lib/printf fclean
 	rm -rf ${NAME}
 
 re:	fclean all
