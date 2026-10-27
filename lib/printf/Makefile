@@ -10,12 +10,18 @@ SRCS = ft_adress.c\
 					
 OBJS =          ${SRCS:.c=.o}
 
+UNAME_S := $(shell uname -s)
+
 CFLAGS =        -Wall -Wextra -Werror
+
+ifeq ($(UNAME_S), Linux)
+    LINUXFLAGS = -lbsd
+endif
 
 all:            ${NAME}
 
 ${NAME}:        ${OBJS}
-				ar rc ${NAME} ${OBJS}
+				ar rc ${NAME} ${OBJS} ${LINUXFLAGS}
 
 ${OBJS_BONUS}:
 				cc ${CFLAGS} -c -I.

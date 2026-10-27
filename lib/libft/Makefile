@@ -49,11 +49,16 @@ OBJ = $(SRC:.c=.o)
 
 FLAGS = -Wall -Werror -Wextra
 
+ifeq ($(UNAME_S), Linux)
+    LINUXFLAGS = -lbsd
+endif
+
+
 #########ACTION######################################
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	ar rc $(NAME) $(OBJ) ${LINUXFLAGS}
 #### Va creer archives
 #
 #	#$<: the name of the first prerequisite

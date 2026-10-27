@@ -12,7 +12,10 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+#if defined(__linux__)
 # include <bsd/string.h>
+#endif
+# include <stdarg.h>
 # include <ctype.h>
 # include <stdio.h>
 # include <stdlib.h>
