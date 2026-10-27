@@ -1,5 +1,7 @@
 # Push_swap
 
+![Screenshot Sorting visualiser](assets/images/Sorting_Visualizer.tiff)
+
 Un projet d'algorithmique consistant à trier des données sur une pile, avec un ensemble d'instructions limité, en utilisant le moins de mouvements possible.
 
 ---
@@ -53,10 +55,144 @@ Pour ce projet, j'ai implémenté l'algorithme Turk voici un résumé de son mod
 
 ---
 
+Ainsi, une fois toutes les commandes réalisées on obtient une liste triée dans une pile en ayant fait un minimum de déplacements ! \
+> [!TIP] Si vous voulez le tester avec un visualiseur je vous recommande des projets disponible sur Github comme celui de 
+[[o-reo]([https://github.com/o-reo/push_swap_visualizer])]
+> 
+![Screenshot a visual final sort](assets/images/finalSort.tiff)
+
+## Compilation
+
+Le projet se compile à l'aide du Makefile fourni à la racine :
+
+**Compilation du binaire push_swap** \
+`make`
+
+**Nettoyage des fichiers objets (.o)** \
+`make clean`
+
+**Nettoyage complet (objets + binaires)** \
+`make fclean`
+
+**Recompilation complète** \
+`make re`
+
+
+L'exécutable push_swap est généré à la racine du dépôt.
+
 ## Utilisation
 
-### Compilation
+Le programme prend en argument une liste d'entiers non triés (passés en paramètres multiples ou sous la forme d'une seule chaîne de caractères) et affiche la suite d'instructions nécessaires pour trier la pile a par ordre croissant :
 
-Générez l'exécutable à l'aide du `Makefile` :
-```bash
-make
+**Arguments multiples** \
+`./push_swap 2 1 3 6 5 8`
+
+**En une seule chaîne de caractères** \
+`./push_swap "2 1 3 6 5 8"`
+
+
+**Tests et Vérification**
+
+Les exécutables de vérification officiels pour macOS (checker_Mac) et Linux (checker_linux) sont inclus à la racine du projet et disposent déjà des droits d'exécution requis (chmod +x).
+
+1. macOS
+
+Sous macOS, la génération des nombres sans doublon s'effectue avec ruby (préinstallé nativement). \
+
+Tester 100 nombres : \
+
+**Génération de 100 nombres uniques** \
+`ARG=$(ruby -e "puts (-1000..1000).to_a.sample(100).join(' ')")`
+
+**Compter le nombre de coups** \
+`./push_swap $ARG | wc -l`
+
+**Vérifier que le tri est valide**\
+`./push_swap $ARG | ./checker_Mac $ARG`
+
+
+Tester 500 nombres : \
+
+**Génération de 500 nombres uniques** \
+`ARG=$(ruby -e "puts (-5000..5000).to_a.sample(500).join(' ')")`
+
+**Compter le nombre de coups** \
+`./push_swap $ARG | wc -l`
+
+**Vérifier que le tri est valide** \
+`./push_swap $ARG | ./checker_Mac $ARG`
+
+
+> [!NOTE] macOS : Si Gatekeeper bloque l'exécution du checker lors du premier lancement, retirez la quarantaine système : \
+> xattr -d com.apple.quarantine ./checker_Mac
+
+
+2. Linux
+
+Sous Linux, la génération aléatoire se fait via l'utilitaire shuf. \
+
+Tester 100 nombres : \
+
+**Génération de 100 nombres uniques** \
+`ARG=$(shuf -i 1-1000 -n 100 | tr '\n' ' ')`
+
+**Compter le nombre de coups** \
+`./push_swap $ARG | wc -l`
+
+**Vérifier que le tri est valide** \
+`./push_swap $ARG | ./checker_linux $ARG`
+
+
+Tester 500 nombres : \
+
+**Génération de 500 nombres uniques** \
+`ARG=$(shuf -i 1-5000 -n 500 | tr '\n' ' ')`
+
+**Compter le nombre de coups** \
+`./push_swap $ARG | wc -l`
+
+**Vérifier que le tri est valide** \
+`./push_swap $ARG | ./checker_linux $ARG`
+
+
+3. Windows (WSL)
+
+Le projet repose sur les standards POSIX et les binaires ELF / Mach-O. Il n'est donc pas exécutable nativement sous Windows (PowerShell / CMD). \
+
+Pour l'exécuter sous Windows : \
+
+Activez et installez WSL 2 (Windows Subsystem for Linux) avec une distribution Ubuntu : \
+
+`wsl --install`
+
+Ouvrez le terminal WSL et installez les outils de compilation essentiels : \
+
+`sudo apt update && sudo apt install build-essential`
+
+Suivez ensuite exactement la procédure décrite pour Linux (utilisation de shuf et de ./checker_linux). \
+
+### Barème de Performance
+
+Le vérificateur doit afficher OK et le nombre d'instructions doit respecter un seuil bas.
+
+### Gestion des Erreurs
+
+Le programme intercepte les entrées invalides, affiche Error\n sur la sortie d'erreur standard (stderr / fd 2) et quitte immédiatement sans fuite mémoire : \
+
+**Valeurs non numériques** \
+`./push_swap 1 2 a 4`
+
+**Doublons** \
+`./push_swap 1 3 2 3`
+
+**Dépassements de capacité (> INT_MAX ou < INT_MIN)** \
+`./push_swap 2147483648 1 2` \
+`./push_swap -2147483649 1 2`
+
+**Chaînes vides ou composées d'espaces** \
+`./push_swap ""` \
+`./push_swap "   "`
+
+**Liste déjà ordonnée (ne doit rien afficher en sortie)** \
+`./push_swap 1 2 3 4 5`
+
