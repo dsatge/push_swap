@@ -16,13 +16,9 @@ t_node	*move_ups(int target, int cheap, t_node **stack_a, t_node **stack_b)
 {
 	int	move_a;
 	int	move_b;
-	int	smallest;
-	int	doubl;
 
 	move_a = move_target_top(target, stack_a);
 	move_b = move_cheap_top(cheap, stack_b);
-	smallest = is_smallest(move_a, move_b);
-	doubl = 0;
 	if (move_a < 0 && move_b < 0)
 	{
 		move_two_under(move_a, move_b, stack_a, stack_b);

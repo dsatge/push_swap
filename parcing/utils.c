@@ -17,10 +17,8 @@
 int	wr_err(char *str, t_swap *swap)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (str[i])
 	{
 		write(2, &str[i], 1);
@@ -34,10 +32,8 @@ int	wr_err(char *str, t_swap *swap)
 int	wr_err_list(char *str, t_node *element, char **line_conf)
 {	
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (str[i])
 	{
 		write(2, &str[i], 1);

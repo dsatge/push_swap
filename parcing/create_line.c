@@ -17,12 +17,10 @@
 static int	arg_size(int argc, char **argv)
 {
 	int	i;
-	int	j;
 	int	k;
 	int	size;
 
 	i = 1;
-	j = 0;
 	size = 0;
 	while (i < argc)
 	{
